@@ -1,13 +1,18 @@
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+
 const app = express();
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+// config da porta
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.get('/', (req, res) => {
+    res.send('Plataforma ta online!');
+});
